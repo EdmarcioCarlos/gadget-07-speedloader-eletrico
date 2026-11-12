@@ -1,0 +1,106 @@
+============================================================
+ 07 - SPEEDLOADER ELÉTRICO · PEÇAS 3D (VERSÃO PADRÃO ~1000 BBs)
+============================================================
+ Arquivos: stl\*.stl prontos para o fatiador (já na posição
+ de impressão). pecas.scad = desenho editável no OpenSCAD.
+
+ CONFIGURAÇÃO (Creality K1C, PETG, resistente a BB a 10 m+)
+    Camada 0,2 mm · 5 paredes · 5 camadas em cima e embaixo
+    Preenchimento 40% giroide · bico 240 °C · mesa 75-80 °C
+
+ ESTILO TÁTICO FACETADO · CORES (cada peça de uma cor só):
+    PRETO: corpo, tampa_inferior, tampa_reservatorio, roda, trava_roda
+    COYOTE: reservatorio, bico_m4, capa_botao
+    Reservatório agora é octogonal (67,2 mm de face a face) e o corpo tem
+    anel protetor em volta do gatilho e molduras nos botões − e +.
+    MECANISMO (dicas do Nano Speedloader):
+    - roda e travas: camada 0,1 mm, 5 paredes, "passar a ferro"
+      (ironing) ligado, para a superfície onde a BB passa ficar lisa;
+    - corpo: 50% de preenchimento (o bloco do mecanismo leva esforço);
+    - tire toda rebarba da roda e lixe as faces até ela girar sem
+      raspar. O lábio flexível das travas precisa mexer com o dedo.
+
+ PEÇA                 QTD  SUPORTE  OBSERVAÇÃO
+ corpo                 1   não      impresso de cabeça para baixo
+                                    (topo na mesa). ~8 h.
+ tampa_inferior        1   não      fecha o corpo por baixo
+ reservatorio          1   não      ~1000 BBs, fundo em funil
+ tampa_reservatorio    1   não      tampa de encaixe
+ roda                  1   não      8 bolsos, eixo em D de 3 mm
+ trava_roda            2   não      as 2 metades são iguais: uma
+                                    de cada lado da entrada da BB
+ trava_motor           1   não      segura o motor N20 por baixo do bloco
+ bico_m4               1   não      encaixa na coluna embaixo
+ capa_botao            2   não      botões − e +
+
+ IMPRIMA PRIMEIRO a roda, as travas e o corpo e teste com BBs.
+ Se a roda prender, diminua RODA_R em 0,2 mm no pecas.scad e
+ imprima outra (é rápido).
+
+ FERRAGENS (tudo M3 Allen): 4 parafusos M3 x 8 (tampa de baixo) · 2 M3 x 12
+ (reservatório) · 2 M3 x 10 (trava do motor) · 1 M3 x 8 (trava opcional do bico)
+ quente para o motor.
+
+ Depois de imprimir cada peça, me diga ou some no ESTOQUE.js.
+
+
+============================================================
+ 07 - SPEEDLOADER ELÉTRICO COMERCIAL · PEÇAS 3D (HIGH CAPACITY ~10.000 BBs)
+============================================================
+ Arquivo: pecas_comercial.scad = desenho editável no OpenSCAD.
+ STLs gerados: usar PECA = "reservatorio_comercial" | "tampa_reservatorio_comercial" | "corpo_comercial"
+ As demais peças (roda, travas, motor, bico, capas) SÃO IGUAIS à versão padrão.
+
+ CONFIGURAÇÃO (Creality K1C, PETG, resistente a BB a 10 m+)
+    Camada 0,2 mm · 5 paredes · 5 camadas em cima e embaixo
+    Preenchimento 40% giroide · bico 240 °C · mesa 75-80 °C
+    Reservatório: preenchimento 30% giroide (paredes 4mm já dão rigidez)
+    Nervuras internas a cada 8mm (anti-empenamento parede 160mm)
+
+ ESTILO TÁTICO FACETADO · CORES (cada peça de uma cor só):
+    PRETO: corpo_comercial, tampa_inferior, tampa_reservatorio_comercial, roda, trava_roda, trava_motor
+    COYOTE: reservatorio_comercial, bico_m4, capa_botao
+    Reservatório RETANGULAR 160 x 110 x 110 mm = ~1,93 L = ~10.000 BBs (com folga 60% empacotamento)
+    Funil interno 35mm direciona BBs para fenda de 16mm da roda.
+    Tampa retangular com aba de vedação + nervuras em V (estilo tático).
+    Corpo comercial tem 4 pontos de fixação (cantos do reservatório).
+
+ IMPRESSÃO DO RESERVATÓRIO COMERCIAL (K1C 220x220):
+    - Deitado na mesa: X=160mm, Y=110mm, Z=110mm → CABE na cama (220x220)
+    - Tempo estimado: ~12-15h (parede grande, preenchimento 30%)
+    - Orientação: fundo do funil na mesa (Z=0), tampa para cima
+    - Suportes: NÃO (funil é auto-sustentável ≤45°)
+    - Dica: brim 10mm + adesivo (cola bastão) nas bordas longas
+
+ PEÇA COMERCIAL           QTD  SUPORTE  OBSERVAÇÃO
+ corpo_comercial           1   não      igual ao padrão (suporta reservatório retangular)
+ tampa_inferior            1   não      igual ao padrão
+ reservatorio_comercial    1   não      160x110x110mm, ~10k BBs, ~12-15h
+ tampa_reservatorio_comer. 1   não      retangular, aba vedação, nervuras V
+ roda                      1   não      IGUAL versão padrão
+ trava_roda                2   não      IGUAL versão padrão
+ trava_motor               1   não      IGUAL versão padrão
+ bico_m4                   1   não      IGUAL versão padrão
+ capa_botao                2   não      IGUAL versão padrão
+
+ FERRAGENS COMERCIAIS (M3 Allen):
+    4 parafusos M3 x 8 (tampa de baixo)
+    4 parafusos M3 x 12 (reservatório comercial - 4 cantos)
+    2 parafusos M3 x 10 (trava do motor)
+    1 parafuso M3 x 8 (trava opcional do bico)
+
+ VARIÁVEIS DE AJUSTE NO pecas_comercial.scad:
+    RES_BOX_W = 160  // largura reservatório (mm) - max 200 p/ K1C deitado
+    RES_BOX_D = 110  // profundidade reservatório (mm)
+    RES_BOX_H = 110  // altura reservatório (mm)
+    RES_WALL = 4     // espessura parede (mm)
+    RES_RIB = 8      // espaçamento nervuras internas (mm)
+
+ CAPACIDADE ESTIMADA:
+    Volume interno = (160-8) x (110-8) x (110-35) = 152 x 102 x 75 = 1.164.240 mm³ = 1,16 L
+    BB 6mm = 113 mm³ cada. Empacotamento aleatório ~60% = 6.170 BBs
+    Com vibração/agitação da roda → ~7.500-8.500 BBs reais
+    Para 10.000 BBs garantidos: aumente RES_BOX_H para 130mm (total 240mm altura aparelho)
+    OU aumente RES_BOX_W para 180mm (precisa imprimir em 2 partes ou cama 300mm)
+
+ Depois de imprimir cada peça, me diga ou some no ESTOQUE.js.

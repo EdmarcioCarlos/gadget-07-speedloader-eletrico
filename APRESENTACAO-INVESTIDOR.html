@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Speedloader Elétrico Black Bird - Apresentação para Investidores</title>
+<style>
+@page {
+    margin: 20mm;
+    size: A4;
+}
+@media print {
+    .no-print { display: none !important; }
+    .page-break { page-break-before: always; }
+    body { background: white !important; color: black !important; }
+    .card { break-inside: avoid; }
+    .section { break-inside: avoid; }
+    table { break-inside: auto; }
+    tr { break-inside: avoid; break-after: auto; }
+}
+@media screen {
+    body { max-width: 210mm; margin: 0 auto; padding: 20mm; background: #f5f5f5; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+}
+:root {
+    --primary: #1a3a5c;
+    --secondary: #2c5f8a;
+    --accent: #c8962e;
+    --accent-light: #e8b84e;
+    --text: #1a1a2e;
+    --text-light: #4a4a6a;
+    --bg: #ffffff;
+    --bg-alt: #f8f9fa;
+    --border: #e0e4e8;
+    --success: #2d7d32;
+    --warning: #c8962e;
+    --danger: #c62828;
+}
+* { box-sizing: border-box; }
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+    font-size: 11pt;
+}
+h1, h2, h3, h4 { color: var(--primary); font-weight: 600; line-height: 1.3; margin-top: 0; }
+h1 { font-size: 28pt; border-bottom: 3px solid var(--accent); padding-bottom: 12px; margin-bottom: 8px; }
+h2 { font-size: 18pt; border-bottom: 2px solid var(--border); padding-bottom: 8px; margin: 30px 0 16px; }
+h3 { font-size: 14pt; color: var(--secondary); margin: 20px 0 10px; }
+h4 { font-size: 12pt; color: var(--text-light); margin: 14px 0 8px; }
+p { margin: 8px 0; text-align: justify; }
+ul, ol { margin: 8px 0; padding-left: 24px; }
+li { margin: 4px 0; }
+strong { color: var(--primary); }
+.code { font-family: 'Consolas', 'Monospace'; font-size: 10pt; background: var(--bg-alt); padding: 2px 6px; border-radius: 4px; color: var(--secondary); }
+.table-container { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+th, td { padding: 10px 12px; border: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { background: var(--primary); color: white; font-weight: 600; font-size: 9.5pt; }
+tr:nth-child(even) td { background: var(--bg-alt); }
+tr.total-row td { font-weight: bold; background: #fff3cd; }
+tr.reuse-row td { font-weight: bold; background: #d4edda; color: var(--success); }
+.card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.card-icon { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18pt; }
+.tile-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 16px 0; }
+.tile { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+.tile-value { font-size: 20pt; font-weight: 700; color: var(--primary); font-family: 'Consolas', monospace; }
+.tile-label { font-size: 9pt; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 8.5pt; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-intermediate { background: #fff3cd; color: #856404; }
+.badge-reuse { background: #d4edda; color: #155724; }
+.badge-new { background: #f8d7da; color: #721c24; }
+.note-box { border-left: 4px solid var(--accent); background: var(--bg-alt); padding: 12px 16px; margin: 12px 0; border-radius: 0 8px 8px 0; }
+.note-box.warning { border-color: var(--danger); background: #fef2f2; }
+.note-box.success { border-color: var(--success); background: #f0fdf4; }
+.note-box.info { border-color: var(--secondary); background: #eff6ff; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media print { .two-col { grid-template-columns: 1fr 1fr; } }
+@media screen and (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+.code-block { background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-family: 'Consolas', monospace; font-size: 9pt; line-height: 1.5; margin: 12px 0; }
+.code-block .comment { color: #6a9955; }
+.code-block .keyword { color: #569cd6; }
+.code-block .string { color: #ce9178; }
+.code-block .number { color: #b5cea8; }
+.code-block .function { color: #dcdcaa; }
+.footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-light); font-size: 9pt; }
+.cover-page { text-align: center; padding: 60px 20px; }
+.cover-page h1 { border: none; font-size: 36pt; margin-bottom: 16px; }
+.cover-page .subtitle { font-size: 18pt; color: var(--secondary); margin-bottom: 40px; }
+.cover-page .meta { font-size: 12pt; color: var(--text-light); }
+.cover-page .meta div { margin: 8px 0; }
+.cover-page .logo { font-size: 48pt; margin-bottom: 20px; }
+.toc { columns: 2; column-gap: 40px; margin: 24px 0; }
+.toc li { list-style: none; padding: 6px 0; border-bottom: 1px dotted var(--border); }
+.toc li::before { content: attr(data-num) " "; font-weight: 600; color: var(--accent); }
+.toc a { text-decoration: none; color: var(--text); }
+.toc a:hover { color: var(--accent); }
+.specs-table td:first-child { font-weight: 600; width: 40%; }
+.specs-table td:last-child { font-family: 'Consolas', monospace; }
+.diagram-placeholder { background: var(--bg-alt); border: 2px dashed var(--border); border-radius: 8px; padding: 40px; text-align: center; color: var(--text-light); margin: 16px 0; }
+.highlight-box { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 24px; border-radius: 12px; margin: 20px 0; }
+.highlight-box h3 { color: var(--accent-light); margin-top: 0; }
+.phase-timeline { position: relative; padding-left: 30px; margin: 20px 0; }
+.phase-timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--accent); }
+.phase-item { position: relative; padding-bottom: 24px; }
+.phase-item::before { content: ''; position: absolute; left: -30px; top: 4px; width: 16px; height: 16px; border-radius: 50%; background: var(--accent); border: 3px solid white; box-shadow: 0 0 0 2px var(--accent); }
+.phase-item:last-child::before { background: var(--success); box-shadow: 0 0 0 2px var(--success); }
+.phase-item h4 { margin-bottom: 4px; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin: 16px 0; }
+.feature-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px; transition: box-shadow 0.2s; }
+.feature-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.feature-card h4 { margin-top: 0; color: var(--primary); display: flex; align-items: center; gap: 8px; }
+.feature-card .icon { color: var(--accent); font-size: 16pt; }
+.kpi-row { display: flex; gap: 16px; flex-wrap: wrap; margin: 16px 0; }
+.kpi { flex: 1; min-width: 140px; background: var(--primary); color: white; padding: 16px; border-radius: 8px; text-align: center; }
+.kpi-value { font-size: 24pt; font-weight: 700; font-family: 'Consolas', monospace; }
+.kpi-label { font-size: 9pt; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; margin-top: 4px; }
+.print-btn { position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: white; border: none; padding: 14px 24px; border-radius: 50px; font-size: 11pt; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.2); z-index: 100; display: flex; align-items: center; gap: 8px; }
+.print-btn:hover { background: var(--secondary); transform: translateY(-2px); }
+@media print { .print-btn { display: none; } }
+.section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 30px 0; }
+</style>
+</head>
+<body>
+<button class="print-btn no-print" onclick="window.print()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5"/><path d="M18 18h2a2 2 0 0 0 2-2v-5"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+    Imprimir / Salvar PDF
+</button>
+
+<!-- CAPA -->
+<div class="cover-page page-break">
+    <div class="logo">🎯</div>
+    <h1>Speedloader Elétrico<br>Black Bird</h1>
+    <div class="subtitle">Projeto 07 — Linha Tática Airsoft</div>
+    <div class="meta">
+        <div><strong>Categoria:</strong> Intermediário | Recarga Automatizada de Carregadores M4</div>
+        <div><strong>Plataforma:</strong> ESP32-C3 + Motor N20 + Sensor IR</div>
+        <div><strong>Custo (reaproveitando kits):</strong> R$ 88–143 | <strong>Do zero:</strong> R$ 314–442</div>
+        <div><strong>Status:</strong> Protótipo funcional | Código testado | Peças 3D validadas</div>
+        <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border);">
+            <strong>Documento para Investidores</strong> — Novembro 2026
+        </div>
+    </div>
+</div>
+
+<!-- SUMÁRIO -->
+<div class="page-break">
+    <h2>Sumário Executivo</h2>
+    <ul class="toc">
+        <li data-num="01"><a href="#visao">1. Visão Geral do Produto</a></li>
+        <li data-num="02"><a href="#problema">2. Problema e Oportunidade de Mercado</a></li>
+        <li data-num="03"><a href="#solucao">3. Solução Técnica</a></li>
+        <li data-num="04"><a href="#funcionamento">4. Como Funciona (Experiência do Usuário)</a></li>
+        <li data-num="05"><a href="#arquitetura">5. Arquitetura de Hardware e Firmware</a></li>
+        <li data-num="06"><a href="#mecanica">6. Design Mecânico — Versão Padrão (~1.000 BBs)</a></li>
+        <li data-num="06B"><a href="#comercial">6B. Versão Comercial — High Capacity (~10.000 BBs)</a></li>
+        <li data-num="07"><a href="#custo">7. Análise de Custos e Viabilidade</a></li>
+        <li data-num="08"><a href="#diferenciais">8. Diferenciais Competitivos</a></li>
+        <li data-num="09"><a href="#roadmap">9. Roadmap e Próximos Passos</a></li>
+        <li data-num="10"><a href="#investimento">10. Necessidade de Investimento</a></li>
+    </ul>
+</div>
+
+<!-- 1. VISÃO GERAL -->
+<div class="page-break" id="visao">
+    <h2>1. Visão Geral do Produto</h2>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">🎯</div>
+            <div>
+                <h3 style="margin:0">Speedloader Elétrico Black Bird</h3>
+                <p style="margin:0; color: var(--text-light);">Projeto 07 da linha tática — Nível Intermediário</p>
+            </div>
+        </div>
+        <p>O <strong>Speedloader Elétrico Black Bird</strong> é um dispositivo portátil que automatiza o carregamento de carregadores (magazines) M4 mid-cap e low-cap para airsoft. O operador encaixa o carregador no bico, seleciona a quantidade desejada (30, 50, 120, 150, 300 BBs ou modo contínuo), aperta o gatilho e o aparelho carrega sozinho, parando automaticamente na contagem exata.</p>
+
+        <div class="tile-grid">
+            <div class="tile">
+                <div class="tile-value">~10 BB/s</div>
+                <div class="tile-label">Velocidade de Carga</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">120 em ~12s</div>
+                <div class="tile-label">Mid-cap M4 Completo</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">≈ 1.000 BBs</div>
+                <div class="tile-label">Reservatório Padrão</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">≈ 10.000 BBs</div>
+                <div class="tile-label">Reservatório Comercial</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">90×70×235 mm</div>
+                <div class="tile-label">Dimensões Padrão</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">90×70×335 mm</div>
+                <div class="tile-label">Dimensões Comercial</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">R$ 88–143</div>
+                <div class="tile-label">Custo Padrão c/ Kits</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">R$ 120–180</div>
+                <div class="tile-label">Custo Comercial c/ Kits</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">R$ 314–442</div>
+                <div class="tile-label">Custo Do Zero (Padrão)</div>
+            </div>
+        </div>
+
+        <div class="kpi-row">
+            <div class="kpi">
+                <div class="kpi-value">6</div>
+                <div class="kpi-label">Quantidades Pré-definidas</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value">3</div>
+                <div class="kpi-label">Tentativas Anti-Travamento</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value">100%</div>
+                <div class="kpi-label">Força Final (Últimos 20%)</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value">3 min</div>
+                <div class="kpi-label">Auto Sleep / Wake</div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Posicionamento na Linha Black Bird</h3>
+    <p>Este é o <strong>Projeto 07</strong> de uma sequência didática de 14 gadgets táticos, ordenados por dificuldade crescente. Ele reaproveita componentes dos projetos anteriores (cronógrafo Projeto 04 e bomba Projeto 01), reduzindo drasticamente o custo marginal para quem já trilhou a curva de aprendizado.</p>
+    <div class="note-box info">
+        <strong>Público-alvo:</strong> Jogadores de airsoft que usam mid-caps M4 (maioria dos jogadores de Milsim e SpeedQB), equipes que precisam recarregar rápido entre partidas, e lojistas que oferecem serviço de recarga em eventos.
+    </div>
+</div>
+
+<!-- 2. PROBLEMA E OPORTUNIDADE -->
+<div class="page-break" id="problema">
+    <h2>2. Problema e Oportunidade de Mercado</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">📉</div>
+            <div>
+                <h3 style="margin:0">O Problema: Recarga Manual é Lenta, Cansativa e Imprecisa</h3>
+            </div>
+        </div>
+        <div class="two-col">
+            <div>
+                <h4>Dores do Jogador Atual</h4>
+                <ul>
+                    <li><strong>Tempo:</strong> Carregar um mid-cap de 120 BBs manualmente leva 45–60 segundos com speedloader de pistão</li>
+                    <li><strong>Fadiga:</strong> Em eventos de 8h, recarregar 10+ carregadores causa fadiga no pulso e dedos</li>
+                    <li><strong>Imprecisão:</strong> Difícil saber quantas BBs entraram sem contar; mid-cap cheio demais = double feed, vazio demais = desvantagem tática</li>
+                    <li><strong>Travamentos:</strong> Speedloaders manuais travam com BBs de baixa qualidade ou sujas</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Oportunidade Quantificada</h4>
+                <ul>
+                    <li><strong>Mercado BR:</strong> ~150.000 praticantes ativos de airsoft (estimativa ABRAIRSOFT 2024)</li>
+                    <li><strong>Mid-cap M4:</strong> Padrão de facto — 80%+ dos rifles em jogo usam magazine STANAG</li>
+                    <li><strong>Preço atual speedloader manual:</strong> R$ 40–80 (pistão) | R$ 120–200 (rotativo tipo "Ninja")</li>
+                    <li><strong>Gap de preço:</strong> Nenhum speedloader <strong>elétrico nacional</strong> abaixo de R$ 500</li>
+                    <li><strong>Importados (Odyssey, Ninja Electric):</strong> US$ 80–150 + importação = R$ 500–1.000</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <h3>💡 Tese de Investimento</h3>
+        <p>Um speedloader elétrico <strong>nacional, open-source, impresso em 3D e programável</strong> por <strong>R$ 150–250 ao consumidor final</strong> (margem 2–3× sobre custo de peças) ataca o "meio termo" vazio: mais barato que importados, mais rápido e preciso que manuais, e cria receita recorrente via <strong>comunidade, peças de reposição, upgrades e kits de montagem</strong>.</p>
+    </div>
+</div>
+
+<!-- 3. SOLUÇÃO TÉCNICA -->
+<div class="page-break" id="solucao">
+    <h2>3. Solução Técnica</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">⚙️</div>
+            <div>
+                <h3 style="margin:0">Arquitetura de Sistema</h3>
+            </div>
+        </div>
+        <p>O sistema integra <strong>mecânica de precisão</strong> (roda de 8 bolsos + funil cônico), <strong>eletrônica embarcada</strong> (ESP32-C3 + driver L9110S) e <strong>firmware inteligente</strong> (contagem por sensor IR, anti-travamento ativo, gestão de energia).</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><span class="icon">🔄</span> Mecanismo de Alimentação</h4>
+                <p>Roda de 8 bolsos (diâmetro 30 mm) girada por motor N20 100 rpm + redução planetária. Funil cônico no reservatório garante alimentação por gravidade. Entrada por fenda de 16 mm ao longo da roda permite auto-agitação das BBs.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">👁️</span> Contagem por Sensor IR</h4>
+                <p>Barreira infravermelha (LED IR 940 nm + fototransistor + comparador LM393) no tubo de descida. Cada BB que passa corta o feixe → interrupção no GPIO3 do ESP32-C3. Contagem exata, sem peças móveis de desgaste (diferente de microswitch).</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">🧠</span> Firmware Inteligente</h4>
+                <p>Machine state: PRONTO → CARREGANDO → AGITANDO → RÉ → CARREGANDO → PRONTO/CHEIO. Detecção de travamento por timeout (900 ms sem BB) → agita (vai-e-volta 120 ms) → ré 300 ms → retry. Máx. 3 tentativas. Força total (255/255 PWM) nos últimos 20% da carga.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">🔋</span> Gestão de Energia</h4>
+                <p>1× 18650 (3.7 V) + módulo boost 5 V → alimenta motor e ESP32. Deep sleep após 3 min inativo (corrente ~μA). Wake-up por GPIO (gatilho). Partida rápida: segurar gatilho com aparelho dormindo → acorda e carrega última quantidade.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">📺</span> Interface Homem-Máquina</h4>
+                <p>OLED 0.91″ 128×32 I2C: mostra contagem (BBs/alvo), BB/s tempo real, tempo de carga, bateria (parado) e estado. 3 botões: Gatilho (arcade 30 mm lateral), − e + (frontais 6×6), Liga/Desliga (chave slide lateral).</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">🛠️</span> Manutenibilidade</h4>
+                <p>Travas da roda com lábio flexível impresso (anti-pinçamento, sem mola). Bico M4 com 4 dedos flexíveis seguram BBs sem carregador. INVERTER_MOTOR no código inverte sentido se montagem invertida. Trimpot do LM393 ajustável externamente.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 4. FUNCIONAMENTO -->
+<div class="page-break" id="funcionamento">
+    <h2>4. Como Funciona — Experiência do Usuário</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">👆</div>
+            <div>
+                <h3 style="margin:0">Fluxo de Uso Principal</h3>
+            </div>
+        </div>
+        <ol style="font-size: 11pt; line-height: 2;">
+            <li><strong>Ligar:</strong> Chave slide lateral. Tela mostra "BLACK BIRD SPEEDLOADER" + total vitalício de BBs carregadas. Roda chacoalha 3× (anti-travamento). Segurar <b>−</b> ao ligar → chacoalha contínuo.</li>
+            <li><strong>Escolher quantidade:</strong> Botões <b>−</b> / <b>+</b> ciclam: <code>30 → 50 → 120 → 150 → 300 → CONTÍNUO → 30...</code>. Escolha fica salva (EEPROM).</li>
+            <li><strong>Encaixar carregador:</strong> Bico M4 com 4 dedos flexíveis — empurra e trava. Mid-cap 120 = padrão.</li>
+            <li><strong>Carregar:</strong> Apertar gatilho (botão arcade lateral). Motor gira, roda alimenta BBs no tubo, sensor conta cada uma. Tela mostra: <code>87/120</code> | <code>9.2/s</code> | <code>CARREGANDO</code> | <code>9.4s</code>.</li>
+            <li><strong>Parada automática:</strong> Ao atingir a quantidade (ex.: 120), motor para. Tela: <code>PRONTO - GATILHO</code>. Retirar carregador.</li>
+            <li><strong>Pausa/Continua:</strong> Apertar gatilho no meio da carga → PAUSADO. Apertar de novo → continua de onde parou.</li>
+            <li><strong>Modo Contínuo:</strong> Carrega enquanto gatilho segurado. Soltar → pausa. Apertar de novo → continua mesma contagem. Zera sozinho após 1 min parado.</li>
+            <li><strong>Anti-travamento ativo:</strong> Se BB para de passar por 900 ms → agita roda → ré 300 ms → tenta de novo. 3 falhas → "CHEIO OU TRAVOU".</li>
+            <li><strong>Força final:</strong> Nos últimos 20% (ex.: BB 96 de 120), PWM sobe para 255 (100%) para vencer mola do carregador.</li>
+            <li><strong>Ré manual:</strong> Segurar <b>−</b> + <b>+</b> juntos por 300 ms → motor gira ré enquanto segurar (soltar BB presa).</li>
+            <li><strong>Sleep:</strong> 3 min sem uso → tela apaga, deep sleep. Gatilho acorda.</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">📋</div>
+            <div>
+                <h3 style="margin:0">Tabela de Estados e Ações</h3>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Estado</th><th>Tela (Linha 1)</th><th>Tela (Linha 2)</th><th>Gatilho</th><th>− / +</th><th>− + +</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>PRONTO</td><td><code>0/120</code> + bateria</td><td><code>PRONTO - GATILHO</code></td><td>Inicia carga</td><td>Muda quantidade</td><td>Ré manual</td></tr>
+                    <tr><td>CARREGANDO</td><td><code>87/120</code> + BB/s</td><td><code>CARREGANDO 9.4s</code></td><td>Pausa</td><td>—</td><td>Ré manual</td></tr>
+                    <tr><td>PAUSADO</td><td><code>87/120</code> + bateria</td><td><code>PAUSADO</code></td><td>Continua</td><td>Muda qtd (zera)</td><td>Ré manual</td></tr>
+                    <tr><td>AGITANDO</td><td><code>118/120</code> + BB/s</td><td><code>AGITANDO</code></td><td>—</td><td>—</td><td>—</td></tr>
+                    <tr><td>RÉ</td><td><code>118/120</code> + BB/s</td><td><code>DESTRAVANDO</code></td><td>—</td><td>—</td><td>—</td></tr>
+                    <tr><td>CHEIO</td><td><code>120/120</code> + bateria</td><td><code>CHEIO OU TRAVOU</code></td><td>Nova carga (zera)</td><td>Muda qtd</td><td>Ré manual</td></tr>
+                    <tr><td>MANUAL_RE</td><td><code>118/120</code> + bateria</td><td><code>RE MANUAL</code></td><td>—</td><td>—</td><td>Para ré</td></tr>
+                    <tr><td>CONTÍNUO</td><td><code>247</code> + BB/s</td><td><code>CARREGANDO 12.3s</code></td><td>Segura=carrega / Solta=pausa</td><td>—</td><td>Ré manual</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 5. ARQUITETURA HARDWARE/FIRMWARE -->
+<div class="page-break" id="arquitetura">
+    <h2>5. Arquitetura de Hardware e Firmware</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">🔌</div>
+            <div>
+                <h3 style="margin:0">Pinout ESP32-C3 SuperMini</h3>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>GPIO</th><th>Função</th><th>Componente</th><th>Detalhes</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="code">6</span></td><td>Motor A-1A</td><td>L9110S</td><td>PWM frente/ré</td></tr>
+                    <tr><td><span class="code">7</span></td><td>Motor A-1B</td><td>L9110S</td><td>PWM frente/ré</td></tr>
+                    <tr><td><span class="code">3</span></td><td>Sensor IR IN</td><td>LM393 OUT</td><td>Interrupção CHANGE (contagem BB)</td></tr>
+                    <tr><td><span class="code">10</span></td><td>LED IR OUT</td><td>LED IR + 100Ω</td><td>Sempre HIGH durante operação</td></tr>
+                    <tr><td><span class="code">4</span></td><td>Gatilho IN</td><td>Botão Arcade</td><td>Pull-up interno, ativo LOW</td></tr>
+                    <tr><td><span class="code">5</span></td><td>Botão − IN</td><td>Botão 6×6</td><td>Pull-up interno, ativo LOW</td></tr>
+                    <tr><td><span class="code">0</span></td><td>Botão + IN</td><td>Botão 6×6</td><td>Pull-up interno, ativo LOW</td></tr>
+                    <tr><td><span class="code">1</span></td><td>Bateria ADC</td><td>Divisor 100k/100k</td><td>Opcional, lê tensão 18650</td></tr>
+                    <tr><td><span class="code">8</span></td><td>SDA</td><td>OLED I2C</td><td>Display 128×32</td></tr>
+                    <tr><td><span class="code">9</span></td><td>SCL</td><td>OLED I2C</td><td>Display 128×32</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">💻</div>
+            <div>
+                <h3 style="margin:0">Estrutura do Firmware (SPEEDLOADER.ino)</h3>
+            </div>
+        </div>
+        <div class="code-block"><span class="comment">// ================= CONFIGURAÇÃO =================</span>
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_MOTOR_A  = <span class="number">6</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_MOTOR_B  = <span class="number">7</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_IR_SAIDA = <span class="number">3</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_IR_LED   = <span class="number">10</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_GATILHO  = <span class="number">4</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_MENOS    = <span class="number">5</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span> PINO_MAIS     = <span class="number">0</span>;
+
+<span class="comment">// Motor</span>
+<span class="keyword">const</span> <span class="keyword">uint8_t</span>  VELOCIDADE   = <span class="number">200</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span>  FORCA_FINAL  = <span class="number">255</span>;
+<span class="keyword">const</span> <span class="keyword">uint16_t</span> TRAVA_MS     = <span class="number">900</span>;
+<span class="keyword">const</span> <span class="keyword">uint8_t</span>  TENTATIVAS   = <span class="number">3</span>;
+
+<span class="comment">// Quantidades (0 = contínuo)</span>
+<span class="keyword">const</span> <span class="keyword">uint16_t</span> QUANTIDADES[] = {<span class="number">30</span>, <span class="number">50</span>, <span class="number">120</span>, <span class="number">150</span>, <span class="number">300</span>, <span class="number">0</span>};
+
+<span class="comment">// ================= PROGRAMA =================</span>
+<span class="keyword">enum</span> Estado { PRONTO, CARREGANDO, PAUSADO, AGITANDO, RE, CHEIO, MANUAL_RE };
+
+<span class="keyword">void</span> <span class="function">motor</span>(<span class="keyword">int</span> velocidade) { <span class="comment">// +frente, -ré, 0=para</span> ... }
+<span class="keyword">uint8_t</span> <span class="function">forcaAgora</span>() { <span class="comment">// 255 nos últimos 20%</span> ... }
+<span class="keyword">void</span> <span class="function">chacoalhar</span>(<span class="keyword">uint8_t</span> vezes) { <span class="comment">// vai-e-volta anti-travamento</span> ... }
+
+<span class="keyword">void</span> <span class="function">setup</span>() {
+  <span class="comment">// pins, interrupção IR, Preferences (EEPROM), OLED,</span>
+  <span class="comment">// partida rápida (wake por gatilho), chacoalhar inicial</span>
+}
+<span class="keyword">void</span> <span class="function">loop</span>() {
+  <span class="comment">// leitura botões com debounce (25 ms)</span>
+  <span class="comment">// máquina de estados + anti-travamento</span>
+  <span class="comment">// contagem zera após 1 min parado (contínuo)</span>
+  <span class="comment">// desenha OLED a cada 100 ms</span>
+  <span class="comment">// deep sleep após 3 min inativo</span>
+}</div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">🔧</div>
+            <div>
+                <h3 style="margin:0">Principais Constantes Ajustáveis (Tuning)</h3>
+            </div>
+        </div>
+        <div class="table-container">
+            <table class="specs-table">
+                <tbody>
+                    <tr><td><span class="code">VELOCIDADE</span></td><td>200 (0–255)</td><td>PWM durante carga normal. Baixar se BBs pularem da roda.</td></tr>
+                    <tr><td><span class="code">FORCA_FINAL</span></td><td>255</td><td>PWM nos últimos 20%. Máximo para vencer mola do mid-cap.</td></tr>
+                    <tr><td><span class="code">TRAVA_MS</span></td><td>900 ms</td><td>Timeout sem BB = travamento. Aumentar se BBs lentas.</td></tr>
+                    <tr><td><span class="code">AGITA_MS</span></td><td>120 ms</td><td>Meia-volta da agitação. Curto para não derramar BBs.</td></tr>
+                    <tr><td><span class="code">RE_MS</span></td><td>300 ms</td><td>Tempo de ré para destravar. Ajustar conforme atrito.</td></tr>
+                    <tr><td><span class="code">TENTATIVAS</span></td><td>3</td><td>Nº de ciclos agita+ré antes de desistir.</td></tr>
+                    <tr><td><span class="code">IR_NIVEL_BB</span></td><td>LOW</td><td>Nível do LM393 quando BB corta feixe. Trocar p/ HIGH se necessário.</td></tr>
+                    <tr><td><span class="code">INVERTER_MOTOR</span></td><td>false</td><td>true se roda gira mas BBs não descem (polaridade invertida).</td></tr>
+                    <tr><td><span class="code">ZERA_CONTAGEM_MS</span></td><td>60000</td><td>1 min parado → zera contagem (modo contínuo).</td></tr>
+                    <tr><td><span class="code">DORMIR_MS</span></td><td>180000</td><td>3 min inativo → deep sleep.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 6. DESIGN MECÂNICO -->
+<div class="page-break" id="mecanica">
+    <h2>6. Design Mecânico e Peças 3D</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">🖨️</div>
+            <div>
+                <h3 style="margin:0">Lista de Peças Impressas (Estilo Tático Facetado)</h3>
+            </div>
+        </div>
+        <p>Todas as peças seguem a linguagem visual <strong>Tático Facetado</strong> da linha Black Bird: caixas chanfradas (`caixa_tatica`), prismas octogonais, tampas com nervuras em V e emblema do pássaro. Cores: <strong>Preto</strong> (corpo, peças estruturais) + <strong>Coyote</strong> (reservatório, bico, capas de botão — peças de destaque).</p>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Peça</th><th>Qtd</th><th>Cor</th><th>Tempo Est.</th><th>Suportes</th><th>Observações Críticas</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>corpo</td><td>1</td><td>Preto</td><td>~8 h</td><td>Não</td><td>Impresso de cabeça para baixo. Bloco do mecanismo = 50% preenchimento.</td></tr>
+                    <tr><td>tampa_inferior</td><td>1</td><td>Preto</td><td>~1 h</td><td>Não</td><td>4 parafusos M3×8. Fecha baia da eletrônica.</td></tr>
+                    <tr><td>reservatorio</td><td>1</td><td>Coyote</td><td>~4 h</td><td>Não</td><td>Octogonal, funil cônico, emblema + nome "BLACK BIRD" (marca única do projeto).</td></tr>
+                    <tr><td>tampa_reservatorio</td><td>1</td><td>Preto</td><td>~1 h</td><td>Não</td><td>Encaixe por fricção.</td></tr>
+                    <tr><td>roda</td><td>1</td><td>Preto</td><td>~2 h</td><td>Não</td><td><strong>Crítica:</strong> Camada 0,1 mm, 5 paredes, ironing ON. Eixo D 3 mm. Testar com BBs antes do resto.</td></tr>
+                    <tr><td>trava_roda</td><td>2</td><td>Preto</td><td>~30 min</td><td>Não</td><td>Meias-travas idênticas. Lábio flexível (fenda) anti-pinçamento. Parafusadas pelo reservatório (M3×12).</td></tr>
+                    <tr><td>trava_motor</td><td>1</td><td>Preto</td><td>~30 min</td><td>Não</td><td>Prende motor N20 por baixo do bloco (2 M3×10).</td></tr>
+                    <tr><td>bico_m4</td><td>1</td><td>Coyote</td><td>~1 h</td><td>Não</td><td>4 dedos flexíveis seguram BBs. Ponta 5,7 mm. Lixar se duro.</td></tr>
+                    <tr><td>capa_botao</td><td>2</td><td>Coyote</td><td>~20 min</td><td>Não</td><td>Molduras octogonais nos botões − e +.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">⚙️</div>
+            <div>
+                <h3 style="margin:0">Parâmetros Críticos do OpenSCAD (pecas.scad)</h3>
+            </div>
+        </div>
+        <div class="code-block"><span class="comment">// Dimensões principais (mm)</span>
+RODA_R = <span class="number">15</span>;           <span class="comment">// Raio da roda (ajustar ±0,2 se prender)</span>
+RODA_BOLSOS = <span class="number">8</span>;            <span class="comment">// 8 bolsos = ~10 BB/s a 100 rpm</span>
+RODA_EIXO_D = <span class="number">3</span>;            <span class="comment">// Eixo em D para motor N20</span>
+FENDA_ENTRADA = <span class="number">16</span>;         <span class="comment">// Largura da fenda de entrada das BBs</span>
+BICO_PONTA_DIAM = <span class="number">5.7</span>;      <span class="comment">// Diâmetro da ponta do bico (mid-cap M4)</span>
+BICO_DEDOS = <span class="number">4</span>;             <span class="comment">// 4 dedos flexíveis</span>
+TRAVA_LABIO_ESPESSURA = <span class="number">1.2</span>;  <span class="comment">// Espessura do lábio flexível anti-pinçamento</span>
+CORPO_PAREDE = <span class="number">3.5</span>;         <span class="comment">// Parede mínima ≥ 3 mm (resistente a BB 10 m+)</span>
+RESERVATORIO_FACE_A_FACE = <span class="number">67.2</span>; <span class="comment">// Octogonal</span>
+
+<span class="comment">// Configuração de impressão (Creality K1C, PETG)</span>
+<span class="keyword">CAMADA</span> = <span class="number">0.2</span>;  <span class="comment">// Geral</span>
+<span class="keyword">CAMADA_RODA</span> = <span class="number">0.1</span>; <span class="comment">// Roda + travas: superfície lisa</span>
+<span class="keyword">PAREDES</span> = <span class="number">5</span>;
+<span class="keyword">PREENCHIMENTO</span> = <span class="string">"giroide"</span>;
+<span class="keyword">PREENCHIMENTO_CORPO</span> = <span class="number">50</span>%; <span class="comment">// Bloco do mecanismo</span>
+<span class="keyword">IRONING_RODA</span> = <span class="keyword">true</span>;
+<span class="keyword">BICO_TEMP</span> = <span class="number">240</span>;
+<span class="keyword">MESA_TEMP</span> = <span class="number">75-80</span>;</div>
+    </div>
+
+    <div class="note-box success">
+        <strong>Dica de validação:</strong> Imprimir <strong>primeiro a roda, as travas e o corpo</strong>. Testar giro livre com BBs nos 8 bolsos. Se prender → diminuir <code>RODA_R</code> em 0,2 mm no <code>pecas.scad</code> e reimprimir só a roda (rápido). Isso evita reimprimir o corpo de 8 h.
+    </div>
+</div>
+
+<!-- 6B. VERSÃO COMERCIAL HIGH CAPACITY (10.000 BBs) -->
+<div class="page-break" id="comercial">
+    <h2>6B. Versão Comercial — High Capacity (≈ 10.000 BBs)</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">📦</div>
+            <div>
+                <h3 style="margin:0">Reservatório Retangular 160×110×110 mm</h3>
+            </div>
+        </div>
+        <p>Para atender demandas comerciais (campos de airsoft, lojistas, eventos grandes, equipes Milsim), foi desenvolvida a versão <strong>Comercial High Capacity</strong> com reservatório retangular de ~1,9 litros internos, capaz de armazenar <strong>até 10.000 BBs</strong> (com agitação da roda).</p>
+
+        <div class="tile-grid">
+            <div class="tile">
+                <div class="tile-value">~10.000 BBs</div>
+                <div class="tile-label">Capacidade Máxima</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">160×110×110 mm</div>
+                <div class="tile-label">Reservatório (C×L×A)</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">~1,93 L</div>
+                <div class="tile-label">Volume Interno</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">90×70×335 mm</div>
+                <div class="tile-label">Aparelho Completo (A)</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">~12-15 h</div>
+                <div class="tile-label">Tempo Impressão Reservatório</div>
+            </div>
+            <div class="tile">
+                <div class="tile-value">4 cantos M3×12</div>
+                <div class="tile-label">Fixação Reservatório</div>
+            </div>
+        </div>
+
+        <h4>Principais Características do Design Comercial</h4>
+        <ul>
+            <li><strong>Caixa retangular</strong> 160×110×110 mm (cabe deitado na K1C 220×220)</li>
+            <li><strong>Funil interno 35 mm</strong> direciona BBs para fenda de 16 mm da roda (mesma geometria da versão padrão)</li>
+            <li><strong>Paredes 4 mm + nervuras a cada 8 mm</strong> anti-empenamento em impressão grande</li>
+            <li><strong>Tampa retangular</strong> com aba de vedação interna + nervuras em V (estilo tático)</li>
+            <li><strong>4 pontos de fixação</strong> (cantos) no corpo comercial — mais seguro que 2 parafusos centrais</li>
+            <li><strong>Mesmo mecanismo</strong> (roda, travas, motor, bico, sensor, eletrônica) — apenas corpo e reservatório mudam</li>
+            <li><strong>Marca BLACK BIRD</strong> na face lateral de 160 mm (emblem + nome vertical)</li>
+        </ul>
+
+        <div class="note-box info">
+            <strong>Impressão na K1C:</strong> Reservatório deitado (X=160, Y=110, Z=110) — cabe na cama 220×220. Sem suportes (funil ≤45°). Brim 10mm + cola bastão nas bordas longas recomendado. Preenchimento 30% giroide (paredes 4mm já dão rigidez).
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Comparativo: Versão Padrão vs Comercial</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Especificação</th><th>Padrão (~1.000 BBs)</th><th>Comercial (~10.000 BBs)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Reservatório</td><td>Octogonal 67,2 mm face-a-face × 125 mm</td><td>Retangular 160 × 110 × 110 mm</td></tr>
+                    <tr><td>Volume útil</td><td>~0,6 L</td><td>~1,9 L</td></tr>
+                    <tr><td>Capacidade BBs</td><td>~1.000</td><td>~7.500–10.000 (com agitação)</td></tr>
+                    <tr><td>Altura total aparelho</td><td>235 mm</td><td>335 mm</td></tr>
+                    <tr><td>Fixação reservatório</td><td>2 parafusos centrais M3×12</td><td>4 parafusos cantos M3×12</td></tr>
+                    <tr><td>Tampa reservatório</td><td>Octogonal encaixe fricção</td><td>Retangular aba vedação + nervuras V</td></tr>
+                    <tr><td>Tempo impressão reservatório</td><td>~4 h</td><td>~12–15 h</td></tr>
+                    <tr><td>Preenchimento</td><td>40% giroide</td><td>30% giroide (paredes 4mm)</td></tr>
+                    <tr><td>Nervuras internas</td><td>Não</td><td>Sim, grade 8 mm</td></tr>
+                    <tr><td>Peças compartilhadas</td><td colspan="2" style="text-align:center"><strong>100% do mecanismo (roda, travas, motor, bico, sensor, eletrônica, capas)</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <h3>🎯 Casos de Uso Comerciais</h3>
+        <ul>
+            <li><strong>Campos de airsoft:</strong> Aluguel por hora/dia para jogadores recarregarem entre partidas (receita recorrente)</li>
+            <li><strong>Lojas/Revendedores:</strong> Demonstração + serviço de recarga rápido no balcão</li>
+            <li><strong>Eventos Milsim/OP Large:</strong> 1 aparelho atende 50+ jogadores sem recarregar reservatório</li>
+            <li><strong>Equipes competitivas:</strong> Recarga de 10+ mid-caps em sequência sem parar</li>
+            <li><strong>Treinamento militar/LE:</strong> Alto volume, confiabilidade, contador vitalício para logística</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 7. CUSTOS -->
+<div class="page-break" id="custo">
+    <h2>7. Análise de Custos e Viabilidade Econômica</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">💰</div>
+            <div>
+                <h3 style="margin:0">Bill of Materials — Versão Padrão (Preços Out/2026 — Mercado Livre, Filtro "Novo")</h3>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Item</th><th>Fonte</th><th>Fica Para (Kits)</th><th style="text-align:right">Menor (R$)</th><th style="text-align:right">Maior (R$)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Motor N20 6 V redução 100 rpm (kit c/ 2 = R$ 62–107)</td><td>ML</td><td>—</td><td class="r">39,00</td><td class="r">54,00</td></tr>
+                    <tr><td>Módulo ponte H L9110S (kit c/ 2 = R$ 23,80)</td><td>ML</td><td>—</td><td class="r">13,97</td><td class="r">27,03</td></tr>
+                    <tr><td>OLED 0,91″ 128×32 I2C</td><td>ML</td><td>—</td><td class="r">14,90</td><td class="r">26,90</td></tr>
+                    <tr><td>Módulo carregador 18650 c/ saída 5 V (estimativa)</td><td>ML</td><td>—</td><td class="r">15,00</td><td class="r">25,00</td></tr>
+                    <tr><td>Suporte 18650 c/ fios (estimativa)</td><td>ML</td><td>—</td><td class="r">5,00</td><td class="r">10,00</td></tr>
+                    <tr><td>ESP32-C3, par IR, LM393, trimpot, botões 6×6, chave, 18650</td><td class="reuse">Kits Projeto 04</td><td>Projetos 03, 04, 05, 06, 08, 09, 10, 11, 12, 13, 14</td><td class="r">0,00</td><td class="r">0,00</td></tr>
+                    <tr><td>Botão arcade 30 mm, resistores</td><td class="reuse">Sobras Projeto 01</td><td>Projetos 02, 05, 09</td><td class="r">0,00</td><td class="r">0,00</td></tr>
+                    <tr class="reuse-row"><td colspan="3"><strong>Total Padrão Reaproveitando Kits 01 + 04</strong></td><td class="r"><strong>≈ 88</strong></td><td class="r"><strong>≈ 143</strong></td></tr>
+                    <tr class="total-row"><td colspan="3"><strong>Total Padrão Do Zero (comprando tudo)</strong></td><td class="r"><strong>≈ 314</strong></td><td class="r"><strong>≈ 442</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">💰</div>
+            <div>
+                <h3 style="margin:0">Custo Adicional — Versão Comercial (Reservatório Grande)</h3>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Item Adicional</th><th>Detalhamento</th><th style="text-align:right">Menor (R$)</th><th style="text-align:right">Maior (R$)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Filamento PETG extra (reservatório 160×110×110 + tampa)</td><td>~350g @ R$ 90/kg</td><td class="r">31,50</td><td class="r">31,50</td></tr>
+                    <tr><td>2 parafusos M3×12 extras (4 cantos vs 2 centrais)</td><td>Pacote 50 un.</td><td class="r">0,50</td><td class="r">1,00</td></tr>
+                    <tr><td>Tempo máquina extra (12-15h vs 4h)</td><td>Custo energia + desgaste (estimado)</td><td class="r">5,00</td><td class="r">10,00</td></tr>
+                    <tr class="total-row"><td><strong>Incremental Comercial</strong></td><td></td><td class="r"><strong>≈ 37</strong></td><td class="r"><strong>≈ 43</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="margin-top: 12px;"><strong>Custo Total Comercial (reaproveitando kits):</strong> R$ 125–186 | <strong>Comercial Do Zero:</strong> R$ 351–485</p>
+    </div>
+
+    <div class="two-col">
+        <div class="card">
+            <h3>Cenário: Venda Kit DIY Padrão</h3>
+            <ul>
+                <li><strong>Custo peças (reaproveitando):</strong> R$ 88–143</li>
+                <li><strong>Custo peças (kit completo novo):</strong> R$ 314–442</li>
+                <li><strong>Embalagem + manual + suporte:</strong> ~R$ 25</li>
+                <li><strong>Preço sugerido kit DIY:</strong> R$ 180–250</li>
+                <li><strong>Margem (kit reaproveitado):</strong> 2,0–2,8×</li>
+                <li><strong>Margem (kit novo):</strong> 1,3–1,6×</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Cenário: Kit DIY Comercial (High Cap)</h3>
+            <ul>
+                <li><strong>Custo peças (reaproveitando):</strong> R$ 125–186</li>
+                <li><strong>Custo peças (kit completo novo):</strong> R$ 351–485</li>
+                <li><strong>Embalagem reforçada + manual:</strong> ~R$ 35</li>
+                <li><strong>Preço sugerido kit DIY:</strong> R$ 280–380</li>
+                <li><strong>Margem (kit reaproveitado):</strong> 2,2–3,0×</li>
+                <li><strong>Margem (kit novo):</strong> 1,4–1,6×</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="two-col">
+        <div class="card">
+            <h3>Cenário: Aparelho Montado Padrão</h3>
+            <ul>
+                <li><strong>Custo peças + mão de obra (30 min):</strong> R$ 120–180</li>
+                <li><strong>Teste + calibração + garantia:</strong> ~R$ 30</li>
+                <li><strong>Preço sugerido montado:</strong> R$ 350–450</li>
+                <li><strong>Margem:</strong> 2,0–2,5×</li>
+                <li><strong>Concorrentes importados:</strong> R$ 500–1.000</li>
+                <li><strong>Vantagem:</strong> Suporte local, peças de reposição, firmware aberto</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Cenário: Aparelho Montado Comercial</h3>
+            <ul>
+                <li><strong>Custo peças + mão de obra (45 min):</strong> R$ 160–230</li>
+                <li><strong>Teste + calibração + garantia estendida:</strong> ~R$ 40</li>
+                <li><strong>Preço sugerido montado:</strong> R$ 500–650</li>
+                <li><strong>Margem:</strong> 2,2–2,8×</li>
+                <li><strong>Público:</strong> Campos, lojas, equipes, eventos</li>
+                <li><strong>Vantagem:</strong> Único nacional 10k BBs < R$ 1.000</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Estratégia de Receita Recorrente</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4><span class="icon">🔧</span> Peças de Reposição</h4>
+                <p>Rodas, travas, bicos, tampas — desgaste natural. Venda unitária ou kits "manutenção anual".</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">⬆️</span> Upgrades</h4>
+                <p>Motor N20 50 rpm (mais força), roda 12 bolsos (mais rápido), reservatório comercial 10k BBs, bico hi-cap.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">📦</span> Kits de Expansão</h4>
+                <p>"Kit Cronógrafo + Speedloader" (projetos 04+07), "Kit Milsim Completo" (03+06+07+12+14).</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">🎓</span> Workshops / Cursos</h4>
+                <p>Montagem guiada, programação ESP32, design 3D tático. Receita por aluno + venda de kits.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">🏢</span> B2B / Aluguel para Campos</h4>
+                <p>Modelo "Speedloader as a Service": aluguel mensal R$ 150-300 para campos/lojas + manutenção inclusa.</p>
+            </div>
+            <div class="feature-card">
+                <h4><span class="icon">🔧</span> Conversão Padrão → Comercial</h4>
+                <p>Kit upgrade: reservatório comercial + tampa + 2 parafusos + corpo comercial. Vendido separadamente R$ 120-180.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 8. DIFERENCIAIS -->
+<div class="page-break" id="diferenciais">
+    <h2>8. Diferenciais Competitivos</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">🏆</div>
+            <div>
+                <h3 style="margin:0">Por Que o Black Bird Speedloader Vence</h3>
+            </div>
+        </div>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Critério</th><th>Speedloaders Manuais (Pistão/Rotativo)</th><th>Importados Elétricos (Odyssey/Ninja)</th><th><strong>Black Bird Projeto 07</strong></th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Preço ao consumidor</strong></td><td>R$ 40–200</td><td>R$ 500–1.000</td><td class="success"><strong>R$ 180–450</strong></td></tr>
+                    <tr><td><strong>Velocidade</strong></td><td>~3–5 BB/s (manual)</td><td>~15–25 BB/s</td><td><strong>~10 BB/s</strong> (ideal p/ peças impressas)</td></tr>
+                    <tr><td><strong>Precisão contagem</strong></td><td>Nenhuma (olho/ouvido)</td><td>Sim (microswitch)</td><td><strong>Sim (sensor IR, sem desgaste)</strong></td></tr>
+                    <tr><td><strong>Anti-travamento</strong></td><td>Não (trava = manual)</td><td>Básico</td><td><strong>Ativo: agita + ré + retry (3×)</strong></td></tr>
+                    <tr><td><strong>Força final adaptativa</strong></td><td>Não</td><td>Alguns</td><td><strong>Sim (100% PWM últimos 20%)</strong></td></tr>
+                    <tr><td><strong>Contador vitalício</strong></td><td>Não</td><td>Raros</td><td><strong>Sim (EEPROM, mostra ao ligar)</strong></td></tr>
+                    <tr><td><strong>Partida rápida (sleep/wake)</strong></td><td>N/A</td><td>Não</td><td><strong>Sim (gatilho acorda + carrega)</strong></td></tr>
+                    <tr><td><strong>Modo contínuo c/ pausa</strong></td><td>N/A</td><td>Parcial</td><td><strong>Sim (zera após 1 min)</strong></td></tr>
+                    <tr><td><strong>Open source / Hackeável</strong></td><td>Não</td><td>Não</td><td><strong>Sim (Código + STLs + OpenSCAD)</strong></td></tr>
+                    <tr><td><strong>Suporte no Brasil</strong></td><td>Sim (lojas)</td><td>Não (importação)</td><td><strong>Sim (fabricante local)</strong></td></tr>
+                    <tr><td><strong>Peças de reposição</strong></td><td>Sim</td><td>Difícil/Importado</td><td><strong>Impressão 3D sob demanda</strong></td></tr>
+                    <tr><td><strong>Curva de aprendizado</strong></td><td>Baixa</td><td>Baixa</td><td><strong>Média (projeto 07 de 14)</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="highlight-box">
+        <h3>🎯 "Moat" Defensível (Barreiras de Entrada)</h3>
+        <ol>
+            <li><strong>Ecosistema integrado:</strong> Não é um produto isolado — é o elo 07 de uma linha de 14 gadgets que compartilham componentes, firmware (ESP-NOW), estilo visual e base de usuários.</li>
+            <li><strong>Open source como vantagem:</strong> Comunidade contribui com melhorias, traduções, mods. Forks viram marketing gratuito. Concorrentes closed-source não competem em extensibilidade.</li>
+            <li><strong>Fabricação distribuída:</strong> Quem tem impressora 3D imprime em casa. Quem não tem compra kit. Sem estoque de peças plásticas, sem injeção, sem MOQ.</li>
+            <li><strong>Curva de aprendizado monetizada:</strong> Cada projeto ensina uma habilidade (01=soldagem, 04=sensores IR, 07=mecânica de precisão + motor). Usuário investe tempo → fica no ecossistema.</li>
+            <li><strong>Dados de uso real:</strong> Contador vitalício de BBs + telemetria opcional (futuro) = insights de produto que concorrentes não têm.</li>
+        </ol>
+    </div>
+</div>
+
+<!-- 9. ROADMAP -->
+<div class="page-break" id="roadmap">
+    <h2>9. Roadmap e Próximos Passos</h2>
+
+    <div class="phase-timeline">
+        <div class="phase-item">
+            <h4>Fase 1 — Validação Final (Atual — Nov/2026)</h4>
+            <ul>
+                <li>✅ Firmware estável (v1.0) — testado com 2000+ BBs em mid-cap</li>
+                <li>✅ Peças 3D validadas — roda, travas, corpo, bico, reservatório</li>
+                <li>✅ Documentação completa — PREVIA.html, LEIA-ME.txt, Assembly Guide PDF</li>
+                <li>🔄 Teste de campo em 3 eventos (Milsim + domingo) — feedback de 10+ jogadores</li>
+                <li>🔄 Validação de durabilidade: 50 ciclos carga/descarga completos</li>
+            </ul>
+        </div>
+        <div class="phase-item">
+            <h4>Fase 2 — Produtização (Dez/2026 – Jan/2027)</h4>
+            <ul>
+                <li>Kit DIY embalado: caixa personalizada, manual impresso, QR para firmware/update</li>
+                <li>Página de produto no site Black Bird (Vercel + Firebase — mesma stack do Projeto GAT)</li>
+                <li>Lote piloto: 20 kits DIY + 10 montados para venda direta / marketplace</li>
+                <li>Programa "Early Adopters": desconto 20% em troca de review + telemetria anônima</li>
+            </ul>
+        </div>
+        <div class="phase-item">
+            <h4>Fase 3 — Expansão (Fev–Abr/2027)</h4>
+            <ul>
+                <li>Upgrades lançados: Motor 50 rpm, Roda 12 bolsos, Tampa garrafa 3300 BBs</li>
+                <li>Integração ESP-NOW com Cronógrafo (04) e Telêmetro (12) — squad sync</li>
+                <li>Workshop presencial "Montagem Speedloader" (parceria com campo/loja)</li>
+                <li>App mobile (React Native) para configuração via Bluetooth (opcional, BLE no C3)</li>
+            </ul>
+        </div>
+        <div class="phase-item">
+            <h4>Fase 4 — Escala (Maio/2027+)</h4>
+            <ul>
+                <li>Versão "Pro": Corpo em alumínio usinado (CNC), motor brushless, display colorido</li>
+                <li>Licenciamento para fabricação em série (injeção plástica) se volume > 500/un/mês</li>
+                <li>Expansão internacional: documentação EN/ES, firmware multi-idioma</li>
+                <li>Linha "Black Bird Tactical Gear" — mochilas, pouches, patches, vestuário</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Riscos e Mitigações</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Risco</th><th>Prob.</th><th>Impacto</th><th>Mitigação</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Motor N20 100 rpm fraco no fim de mid-cap cheio</td><td>Média</td><td>Alto</td><td>Troca direta por N20 50 rpm (mais torque, mesmo formato). Testado no Nano Speedloader.</td></tr>
+                    <tr><td>BBs tracer/transparentes não cortam feixe IR</td><td>Baixa</td><td>Médio</td><td>Ajuste trimpot LM393. Fallback: recomendar BB opaca. Sensor IR = mesmo do cronógrafo (já validado).</td></tr>
+                    <tr><td>Peças 3D quebram com uso intenso</td><td>Baixa</td><td>Baixo</td><td>PETG + 5 paredes + 50% preenchimento no bloco. Reposição = reimprimir (custo ~R$ 2 filamento).</td></tr>
+                    <tr><td>Concorrente grande lança produto similar barato</td><td>Baixa</td><td>Médio</td><td>Moat = ecossistema + open source + comunidade. Velocidade de iteração > corporate.</td></tr>
+                    <tr><td>Regulamentação airsoft / importação componentes</td><td>Média</td><td>Alto</td><td>Componentes genéricos (N20, ESP32, L9110S, 18650) têm múltiplos fornecedores nacionais.</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- 10. INVESTIMENTO -->
+<div class="page-break" id="investimento">
+    <h2>10. Necessidade de Investimento</h2>
+
+    <div class="card">
+        <div class="card-header">
+            <div class="card-icon">💼</div>
+            <div>
+                <h3 style="margin:0">Proposta de Investimento — Seed</h3>
+            </div>
+        </div>
+        <div class="highlight-box">
+            <h3>R$ 50.000 por 10% da Black Bird Tactical Systems</h3>
+            <p style="font-size: 12pt; margin: 8px 0;">Valuation pré-money: R$ 450.000 | Pós-money: R$ 500.000</p>
+        </div>
+
+        <h3>Aplicação dos Recursos</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Categoria</th><th>Valor</th><th>Detalhamento</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Estoque Inicial (Kits DIY)</strong></td><td class="r">R$ 18.000</td><td>50 kits completos (componentes + embalagem + manual). Custo unitário ~R$ 314 (do zero) → R$ 15.700 + embalagem R$ 2.300.</td></tr>
+                    <tr><td><strong>Ferramentas e Validação</strong></td><td class="r">R$ 12.000</td><td>2ª impressora 3D (Bambu Lab A1/P1S para redundância), multímetro bancada, fonte ajustável, osciloscópio portátil, jig de teste de motor.</td></tr>
+                    <tr><td><strong>Marketing e Lançamento</strong></td><td class="r">R$ 10.000</td><td>Vídeos profissionais (montagem, review, gameplay), tráfego pago Instagram/YouTube (público airsoft BR), stand em 2 eventos (OP Large + Milsim), brindes (patches, adesivos).</td></tr>
+                    <tr><td><strong>Desenvolvimento Próximos Projetos</strong></td><td class="r">R$ 7.000</td><td>Projetos 08 (Alvo Eletrônico), 09 (Lanterna Tática), 10 (Traçante) — componentes para protótipos.</td></tr>
+                    <tr><td><strong>Reserva / Capital de Giro</strong></td><td class="r">R$ 3.000</td><td>Frete, impostos, imprevistos, 3 meses operacionais.</td></tr>
+                    <tr class="total-row"><td><strong>TOTAL</strong></td><td class="r"><strong>R$ 50.000</strong></td><td></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Projeção de Retorno (Conservadora)</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr><th>Mês</th><th>Kits DIY Vendidos</th><th>Montados Vendidos</th><th>Receita Bruta</th><th>Lucro Líquido (est.)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1–2 (Lançamento)</td><td class="r">20</td><td class="r">5</td><td class="r">R$ 5.750</td><td class="r">R$ 1.800</td></tr>
+                    <tr><td>3–4</td><td class="r">35</td><td class="r">10</td><td class="r">R$ 9.750</td><td class="r">R$ 3.500</td></tr>
+                    <tr><td>5–6</td><td class="r">50</td><td class="r">15</td><td class="r">R$ 13.750</td><td class="r">R$ 5.200</td></tr>
+                    <tr><td>7–12 (c/ upgrades + workshops)</td><td class="r">120</td><td class="r">30</td><td class="r">R$ 33.000</td><td class="r">R$ 14.000</td></tr>
+                    <tr class="total-row"><td><strong>Total Ano 1</strong></td><td class="r"><strong>225</strong></td><td class="r"><strong>60</strong></td><td class="r"><strong>R$ 62.250</strong></td><td class="r"><strong>R$ 24.500</strong></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="note-box info">
+            <strong>Premissas conservadoras:</strong> Preço kit DIY R$ 220 (custo R$ 143), montado R$ 400 (custo R$ 180). Margem líquida ~35% após marketing, frete, impostos (Simples Nacional), plataforma. Não conta receita recorrente (peças, upgrades, workshops, projetos futuros). Break-even esperado: Mês 3.
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>O Que o Investidor Ganha Além do Equity</h3>
+        <ul>
+            <li><strong>Assento consultivo</strong> (não executivo) nas decisões de produto/roadmap trimestrais</li>
+            <li><strong>Acesso antecipado</strong> a todos os gadgets da linha (protótipos + kits finais)</li>
+            <li><strong>Direito de preferência</strong> em rodadas futuras (Series A projetada para 2027 com valuation 5–10×)</li>
+            <li><strong>Participação em receita de IP</strong> se houver licenciamento da tecnologia para fabricantes maiores</li>
+            <li><strong>Networking</strong> com comunidade airsoft BR (campos, lojas, equipes, influenciadores)</li>
+        </ul>
+    </div>
+</div>
+
+<!-- CONTATO -->
+<div class="page-break">
+    <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white;">
+        <h2 style="color: var(--accent-light); border: none; margin-bottom: 16px;">Próximos Passos</h2>
+        <p style="font-size: 13pt; margin: 16px 0;">Vamos agendar uma demonstração ao vivo do protótipo funcionando + conversa sobre termos.</p>
+        <div style="margin: 24px 0; font-size: 12pt;">
+            <div><strong>Responsável Técnico:</strong> [Seu Nome] — Eng. Eletrônica / Maker Airsoft</div>
+            <div><strong>Local:</strong> [Cidade/Estado] — Oficina com impressora 3D, bancada eletrônica, campo de testes próximo</div>
+            <div><strong>Contato:</strong> [Email] | [WhatsApp] | [LinkedIn/GitHub]</div>
+        </div>
+        <p style="margin-top: 24px; opacity: 0.9; font-size: 11pt;">
+            <strong>Black Bird Tactical Systems</strong> — Gadgets táticos open-source para airsoft moderno.<br>
+            <em>"Feito por jogadores, para jogadores."</em>
+        </p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>Documento confidencial — Apresentação para Investidores — Black Bird Tactical Systems — Novembro 2026</p>
+    <p>Projeto 07 de 14 — Speedloader Elétrico — Todos os direitos reservados</p>
+</div>
+
+<script>
+// Smooth scroll para links internos
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Atalho Ctrl+P para imprimir
+document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+        e.preventDefault();
+        window.print();
+    }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿# Build outputs
+*.elf
+*.hex
+*.bin
+*.uf2
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temp
+*.tmp
+*.temp
